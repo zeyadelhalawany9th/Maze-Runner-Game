@@ -5,10 +5,7 @@
  */
 package Model;
 
-/**
- *
- * @author mabady
- */
+
 public class GiftFactory {
     public static Health creatHealth(){
        return new Health();

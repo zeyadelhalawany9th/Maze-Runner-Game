@@ -9,10 +9,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-/**
- *
- * @author mabady
- */
 public abstract class Sprite {
     
     BufferedImage image;

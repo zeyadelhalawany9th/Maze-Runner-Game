@@ -5,10 +5,6 @@
  */
 package Model;
 
-/**
- *
- * @author mabady
- */
 public class Bomb extends Sprite {
     
     public Bomb() {

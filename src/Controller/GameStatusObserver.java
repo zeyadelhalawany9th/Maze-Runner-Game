@@ -9,10 +9,6 @@ import View.Game;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-/**
- *
- * @author mabady
- */
 public class GameStatusObserver {
     Game game;
 

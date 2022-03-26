@@ -13,10 +13,6 @@ import Model.TreeWall;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
-/**
- *
- * @author mabady
- */
 public class GamePanel extends JPanel {
     PlayingGround currentgrid;
     public GamePanel(){

@@ -7,10 +7,6 @@ package Model;
 
 import Model.Sprite;
 
-/**
- *
- * @author mabady
- */
 public class Bullet extends Sprite {
     
     int i,j;

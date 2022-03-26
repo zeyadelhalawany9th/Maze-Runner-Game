@@ -13,13 +13,6 @@ import Model.PlayingGround;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
-
-
-
-/**
- *
- * @author mabady
- */
 public class MovementObserver {
 
     PlayingGround grid;

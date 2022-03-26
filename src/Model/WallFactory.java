@@ -5,10 +5,6 @@
  */
 package Model;
 
-/**
- *
- * @author mabady
- */
 public class WallFactory {
    public static BrickWall creatbrickwall(){
        return new BrickWall();

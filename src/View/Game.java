@@ -12,10 +12,6 @@ import Controller.MovementObserver;
 
 import javax.swing.*;
 
-/**
- *
- * @author mabady
- */
 public class Game extends javax.swing.JFrame {
     
     KeyBoardController keyBoardController;

@@ -5,10 +5,6 @@
  */
 package Model;
 
-/**
- *
- * @author mabady
- */
 public class BrickWall extends Sprite {
     
     public BrickWall(){

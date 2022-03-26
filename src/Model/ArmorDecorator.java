@@ -5,10 +5,6 @@
  */
 package Model;
 
-/**
- *
- * @author mabady
- */
 public class ArmorDecorator extends Sprite {
 
     public ArmorDecorator() {

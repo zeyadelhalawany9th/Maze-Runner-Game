@@ -5,10 +5,6 @@
  */
 package Model;
 
-/**
- *
- * @author mabady
- */
 public class BombFactory {
      public static Bomb creatbomb()
    {

@@ -8,10 +8,6 @@ package Controller;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-/**
- *
- * @author mabady
- */
 public class KeyBoardController extends KeyAdapter{
     
     MovementObserver movementobserver;

@@ -5,10 +5,6 @@
  */
 package Model;
 
-/**
- *
- * @author mabady
- */
 public class TreeWall extends Sprite {
 
     public TreeWall() {

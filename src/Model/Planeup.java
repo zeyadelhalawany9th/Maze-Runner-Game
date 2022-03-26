@@ -12,10 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-/**
- *
- * @author mabady
- */
 public class Planeup extends Sprite {
     int i,j;
     BufferedImage imageup, imagedown, imageleft,imageright;

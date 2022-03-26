@@ -9,10 +9,6 @@ package Model;
 import Controller.HealthState;
 import java.awt.Graphics;
 
-/**
- *
- * @author mabady
- */
 public class PlayingGround {
     
     private Sprite [][] shapesongrid;

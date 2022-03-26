@@ -5,10 +5,6 @@
  */
 package Controller;
 
-/**
- *
- * @author mabady
- */
 public class HealthState {
     
     int health = 100;
