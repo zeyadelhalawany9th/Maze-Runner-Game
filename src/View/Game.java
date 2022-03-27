@@ -82,7 +82,7 @@ public class Game extends javax.swing.JFrame {
         );
 
         Ammo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Ammo.setText("Ammo:");
+        Ammo.setText("Ammo: ");
 
         NewGame.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         NewGame.setText("New Game");
@@ -93,7 +93,7 @@ public class Game extends javax.swing.JFrame {
         });
 
         Health.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Health.setText("Health:");
+        Health.setText("Health: ");
 
         Pause.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Pause.setText("Pause");
@@ -186,9 +186,8 @@ public class Game extends javax.swing.JFrame {
                             game2.health();
                             game2.ammo();
                             game2.score();
+                            panel.repaint();
 
-
-                            panel.repaint();                            
                             try{
                                 Thread.sleep(50);
                             }
@@ -256,7 +255,6 @@ public class Game extends javax.swing.JFrame {
                             game.ammo();
                             game.score();
                             panel.repaint();
-
                            
                             try{
                                 Thread.sleep(50);
