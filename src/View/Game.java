@@ -256,6 +256,7 @@ public class Game extends javax.swing.JFrame {
                             game.ammo();
                             game.score();
                             panel.repaint();
+
                            
                             try{
                                 Thread.sleep(50);

@@ -10,7 +10,7 @@ import Model.Sprite;
 public class Bullet extends Sprite {
     
     int i,j;
-    int ammo = 6;
+    int ammo = 10;
     public Bullet(int i , int j, int ammo) {
         
         super("src/model/Bullet.png");
@@ -21,7 +21,8 @@ public class Bullet extends Sprite {
     
     
     
-    public void changebullte(int i , int j ){
+    public void changebullte(int i , int j )
+    {
         while(i!=0){
             this.setI(i-1);
             i--;

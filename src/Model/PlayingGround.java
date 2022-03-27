@@ -46,6 +46,11 @@ public class PlayingGround {
                     shapesongrid[i][j] = ArmorFactory.creatArmor();
                 }
 
+                else if(randomnumber<0.15){
+                    shapesongrid[i][j] = AmmoFactory.createAmmo();
+                }
+
+
                 
             }
         }
@@ -57,6 +62,8 @@ public class PlayingGround {
                 else if(randomnumber<0.029){
                     shapesongrid[i][j] = BombFactory.creatbomb();
                 }
+
+
                 
             }
         }

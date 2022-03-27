@@ -10,32 +10,36 @@ import Model.PlayingGround;
 import Model.Planedown;
 import Model.Planeup;
 import Model.PlayingGround;
+import View.Game;
+
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 public class MovementObserver {
 
+    int numberOfBullets;
+
     PlayingGround grid;
     String lastdirection;
     GameStatusObserver gameStatusObserver;
-    HealthState state;
-    ScoreState score;
-    AmmoState ammo;
+    HealthState healthState;
+    ScoreState scoreState;
+    AmmoState ammoState;
     Bullet bullet;
 
 
-    public MovementObserver(PlayingGround grid, GameStatusObserver gameStatusObserver, HealthState state, ScoreState score, AmmoState ammo) {
+    public MovementObserver(PlayingGround grid, GameStatusObserver gameStatusObserver, HealthState healthState, ScoreState scoreState, AmmoState ammoState) {
         this.grid = grid;
         this.lastdirection = "up";
         this.gameStatusObserver = gameStatusObserver;
-        this.state = state;
-        this.score = score;
-        this.ammo = ammo;
+        this.healthState = healthState;
+        this.scoreState = scoreState;
+        this.ammoState = ammoState;
     }
 
     @SuppressWarnings("empty-statement")
     public void movementupdate(int keycode) {
-        if (state.health <= 0) {
+        if (healthState.health <= 0) {
             gameStatusObserver.gameoverupdate();
         }
                 
@@ -49,26 +53,26 @@ public class MovementObserver {
                 if (oldI >= 29) {
                     return;
                 } else if (grid.isBomb(oldI + 1, oldJ)) {
-                    ;
-                    state.sethealth(state.health -= 20);
+
+                    healthState.sethealth(healthState.health -= 20);
 
                     grid.deletebomb(oldI + 1, oldJ);
 
                 } else if (grid.isBomb2(oldI + 1, oldJ)) {
 
                     
-                    state.sethealth(state.health -= 50);
+                    healthState.sethealth(healthState.health -= 50);
 
                     grid.deleteBomb2(oldI + 1, oldJ);
 
                 } else if (grid.isBrickWall(oldI + 1, oldJ) || grid.isTreeWall(oldI + 1, oldJ)) {
                     return;
                 } else if (grid.isGift(oldI + 1, oldJ)) {
-                    if (state.health == 100) {
+                    if (healthState.health == 200) {
                         return;
                     } else {
                         
-                        state.sethealth(state.health += 20);
+                        healthState.sethealth(healthState.health += 20);
 
                         grid.deleteGift(oldI + 1, oldJ);
                     }
@@ -84,26 +88,26 @@ public class MovementObserver {
                     gameStatusObserver.gamewon();
                 } else if (grid.isBomb(oldI - 1, oldJ)) {
 
-                    
-                    state.sethealth(state.health -= 20);
+
+                    healthState.sethealth(healthState.health -= 20);
 
                     grid.deletebomb(oldI - 1, oldJ);
 
                 } else if (grid.isBomb2(oldI - 1, oldJ)) {
 
-                    
-                    state.sethealth(state.health -= 50);
+
+                    healthState.sethealth(healthState.health -= 50);
 
                     grid.deleteBomb2(oldI - 1, oldJ);
 
                 } else if (grid.isBrickWall(oldI - 1, oldJ) || grid.isTreeWall(oldI - 1, oldJ)) {
                     return;
                 } else if (grid.isGift(oldI - 1, oldJ)) {
-                    if (state.health == 100) {
+                    if (healthState.health == 200) {
                         return;
                     } else {
-                       
-                        state.sethealth( state.health += 20);
+
+                        healthState.sethealth(healthState.health += 20);
 
                         grid.deleteGift(oldI - 1, oldJ);
                     }
@@ -120,26 +124,26 @@ public class MovementObserver {
 
                 } else if (grid.isBomb(oldI, oldJ - 1)) {
 
-                    
-                    state.sethealth(state.health -= 20);
+
+                    healthState.sethealth(healthState.health -= 20);
 
                     grid.deletebomb(oldI, oldJ - 1);
 
                 } else if (grid.isBomb2(oldI, oldJ - 1)) {
 
-                    
-                    state.sethealth(state.health -= 50);
+
+                    healthState.sethealth(healthState.health -= 50);
 
                     grid.deleteBomb2(oldI, oldJ - 1);
 
                 } else if (grid.isBrickWall(oldI, oldJ - 1) || grid.isTreeWall(oldI, oldJ - 1)) {
                     return;
                 } else if (grid.isGift(oldI, oldJ - 1)) {
-                    if (state.health == 100) {
+                    if (healthState.health == 200) {
                         return;
                     } else {
-                       
-                        state.sethealth( state.health += 20);
+
+                        healthState.sethealth(healthState.health += 20);
 
                         grid.deleteGift(oldI, oldJ - 1);
                     }
@@ -153,22 +157,22 @@ public class MovementObserver {
                     return;
                 } else if (grid.isBomb(oldI, oldJ + 1)) {
 
-                    
-                    state.sethealth(state.health -= 20);
+
+                    healthState.sethealth(healthState.health -= 20);
                     grid.deletebomb(oldI, oldJ + 1);
 
                 } else if (grid.isBomb2(oldI, oldJ + 1)) {
-                    
-                    state.sethealth(state.health -= 50);
+
+                    healthState.sethealth(healthState.health -= 50);
                     grid.deleteBomb2(oldI, oldJ + 1);
                 } else if (grid.isBrickWall(oldI, oldJ + 1) || grid.isTreeWall(oldI, oldJ + 1)) {
                     return;
                 } else if (grid.isGift(oldI, oldJ + 1)) {
-                    if (state.health == 100) {
+                    if (healthState.health == 200) {
                         return;
                     } else {
-                        
-                        state.sethealth(state.health += 20);
+
+                        healthState.sethealth(healthState.health += 20);
                         grid.deleteGift(oldI, oldJ + 1);
                     }
                 }
@@ -176,30 +180,78 @@ public class MovementObserver {
                 break;
                 
             case KeyEvent.VK_SPACE:
-                
-                
-                    
+
+                numberOfBullets = ammoState.getAmmostate();
+
                     if (grid.isBomb(oldI - 1, oldJ)) {
-                        
-                        grid.deletebomb(oldI - 1, oldJ);
-                        grid.deleteBullet(oldI - 1, oldJ);
+
+                        if(numberOfBullets <= 10)
+                        {
+                            if(numberOfBullets != 0)
+                            {
+                                grid.deletebomb(oldI - 1, oldJ);
+                                grid.deleteBullet(oldI - 1, oldJ);
+                                numberOfBullets -=1;
+                            }
+                        }
+
+
                     } else if (grid.isBomb2(oldI - 1, oldJ)) {
-                        
-                        grid.deleteBomb2(oldI - 1, oldJ);
-                        grid.deleteBullet(oldI - 1, oldJ);
+
+                        if(numberOfBullets <= 10)
+                        {
+                            if(numberOfBullets != 0)
+                            {
+                                grid.deleteBomb2(oldI - 1, oldJ);
+                                grid.deleteBullet(oldI - 1, oldJ);
+                                numberOfBullets -=1;
+                            }
+                        }
+
                     } else if (grid.isBrickWall(oldI - 1, oldJ)) {
-                        return;
+                        if(numberOfBullets <= 10)
+                        {
+                            if(numberOfBullets != 0)
+                            {
+                                numberOfBullets -=1;
+                                return;
+
+                            }
+                        }
                     } else if (grid.isTreeWall(oldI - 1, oldJ)) {
-                        
-                        
-                        grid.deletetree(oldI - 1, oldJ);
-                        grid.deleteBullet(oldI - 1, oldJ);
+
+                        if(numberOfBullets <= 10)
+                        {
+                            if(numberOfBullets != 0)
+                            {
+                                grid.deletetree(oldI - 1, oldJ);
+                                grid.deleteBullet(oldI - 1, oldJ);
+                                numberOfBullets -=1;
+                            }
+                        }
                     } else if (grid.getshapesongrid()[oldI - 1][oldJ] == null) {
-                        grid.setbullet(oldI - 1, oldJ);
-                        grid.changebullet(oldI-1, oldJ);
+
+                        if(numberOfBullets <= 10)
+                        {
+                            if(numberOfBullets != 0)
+                            {
+                                grid.setbullet(oldI - 1, oldJ);
+                                grid.changebullet(oldI-1, oldJ);
+                                numberOfBullets -=1;
+                            }
+                        }
                     }
                     else if(grid.isGift(oldI-1,oldJ)){
-                        return;
+
+                        if(numberOfBullets <= 10)
+                        {
+                            if(numberOfBullets != 0)
+                            {
+                                numberOfBullets -=1;
+                                return;
+
+                            }
+                        }
                     }
                 
                          

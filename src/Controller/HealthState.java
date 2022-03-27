@@ -7,7 +7,7 @@ package Controller;
 
 public class HealthState {
     
-    int health = 100;
+    int health = 200;
     public HealthState() 
     {
         
