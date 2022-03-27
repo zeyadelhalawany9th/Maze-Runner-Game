@@ -5,10 +5,7 @@
  */
 package View;
 
-import Controller.GameStatusObserver;
-import Controller.HealthState;
-import Controller.KeyBoardController;
-import Controller.MovementObserver;
+import Controller.*;
 
 import javax.swing.*;
 
@@ -16,7 +13,8 @@ public class Game extends javax.swing.JFrame {
     
     KeyBoardController keyBoardController;
 
-    
+
+
     /**
      *
      *
@@ -40,7 +38,9 @@ public class Game extends javax.swing.JFrame {
         this.keyBoardController = keyBoardController;
         this.addKeyListener(keyBoardController);
     }
-    HealthState state = new HealthState();
+    HealthState healthState = new HealthState();
+    ScoreState scoreState = new ScoreState();
+    AmmoState ammoState =  new AmmoState();
     
 
     /**
@@ -54,10 +54,12 @@ public class Game extends javax.swing.JFrame {
 
         jPanel1 = new GamePanel();
         Ammo = new javax.swing.JLabel();
+        AmmoLabel = new javax.swing.JLabel();
+        Score = new javax.swing.JLabel();
+        ScoreLabel = new javax.swing.JLabel();
         NewGame = new javax.swing.JButton();
         Health = new javax.swing.JLabel();
         Pause = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         Healthlabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -101,9 +103,11 @@ public class Game extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Score:");
+        Score.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Score.setText("Score:");
 
+        ScoreLabel.setBackground(new java.awt.Color(255, 255, 255));
+        AmmoLabel.setBackground(new java.awt.Color(255, 255, 255));
         Healthlabel.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -128,10 +132,17 @@ public class Game extends javax.swing.JFrame {
                                         .addComponent(Health, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(Healthlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+
+
+                                    .addComponent(Score, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+
                     .addComponent(Ammo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(88, Short.MAX_VALUE))
-        );
+
+                .addContainerGap(88, Short.MAX_VALUE)));
+
+
+
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -142,7 +153,7 @@ public class Game extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addComponent(NewGame, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(89, 89, 89)
-                        .addComponent(jLabel1)
+                        .addComponent(Score)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Health, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,16 +174,20 @@ public class Game extends javax.swing.JFrame {
                 Game game2 = new Game();
                 game2.setVisible(true);
                 GamePanel panel = (GamePanel) game2.jPanel1;
-                KeyBoardController kc = new KeyBoardController(new MovementObserver(panel.getCurrentgrid(), new GameStatusObserver(game2), new HealthState()));                
+                KeyBoardController kc = new KeyBoardController(new MovementObserver(panel.getCurrentgrid(), new GameStatusObserver(game2), new HealthState(), new ScoreState(), new AmmoState()));
                 game2.setKeyBoardController(kc);
-                HealthState state = new HealthState();
 
                 game2.requestFocusInWindow();
                 panel.paintComponent(panel.getGraphics());               
                 Thread thread = new Thread(new Runnable(){                   
                     public void run(){                       
                         while(true){
-                           
+
+                            game2.health();
+                            game2.ammo();
+                            game2.score();
+
+
                             panel.repaint();                            
                             try{
                                 Thread.sleep(50);
@@ -226,7 +241,7 @@ public class Game extends javax.swing.JFrame {
                 Game game = new Game();
                 game.setVisible(true);
                 GamePanel panel = (GamePanel) game.jPanel1;
-                KeyBoardController kc = new KeyBoardController(new MovementObserver(panel.getCurrentgrid(), new GameStatusObserver(game), new HealthState()));
+                KeyBoardController kc = new KeyBoardController(new MovementObserver(panel.getCurrentgrid(), new GameStatusObserver(game), new HealthState(), new ScoreState(), new AmmoState()));
                
                 game.setKeyBoardController(kc);
                 
@@ -238,6 +253,8 @@ public class Game extends javax.swing.JFrame {
                         while(true){
                           
                             game.health();
+                            game.ammo();
+                            game.score();
                             panel.repaint();
                            
                             try{
@@ -263,21 +280,38 @@ public class Game extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Ammo;
     private javax.swing.JLabel Health;
+    private javax.swing.JLabel Score;
     private javax.swing.JLabel Healthlabel;
+    private javax.swing.JLabel ScoreLabel;
+    private javax.swing.JLabel AmmoLabel;
     private javax.swing.JButton NewGame;
     private javax.swing.JButton Pause;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
     public void removeListener() {
         this.removeKeyListener(keyBoardController);
+
     }
-    public JLabel health(){
-        this.Healthlabel.setText(""+state.getHealth());
+
+    public JLabel health()
+    {
+        this.Healthlabel.setText(""+healthState.getHealth());
         return Healthlabel;
     }
-    
+
+    public JLabel ammo()
+    {
+        this.AmmoLabel.setText(""+ammoState.getAmmostate());
+        return AmmoLabel;
+    }
+
+    public JLabel score()
+    {
+        this.ScoreLabel.setText(""+scoreState.getScore());
+        return ScoreLabel;
+    }
+
     
    
     

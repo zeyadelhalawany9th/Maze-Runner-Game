@@ -19,14 +19,18 @@ public class MovementObserver {
     String lastdirection;
     GameStatusObserver gameStatusObserver;
     HealthState state;
+    ScoreState score;
+    AmmoState ammo;
     Bullet bullet;
-    
 
-    public MovementObserver(PlayingGround grid, GameStatusObserver gameStatusObserver, HealthState state) {
+
+    public MovementObserver(PlayingGround grid, GameStatusObserver gameStatusObserver, HealthState state, ScoreState score, AmmoState ammo) {
         this.grid = grid;
         this.lastdirection = "up";
         this.gameStatusObserver = gameStatusObserver;
         this.state = state;
+        this.score = score;
+        this.ammo = ammo;
     }
 
     @SuppressWarnings("empty-statement")

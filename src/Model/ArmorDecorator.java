@@ -8,7 +8,7 @@ package Model;
 public class ArmorDecorator extends Sprite {
 
     public ArmorDecorator() {
-        super("src/model/ArmorChest.png");
+        super("src/model/armor.png");
     }
     
     

@@ -36,15 +36,16 @@ public class PlayingGround {
                 else if(randomnumber<0.099){
                     shapesongrid[i][j] = BombFactory.creatbomb();
                 }
-                else if(randomnumber<0.103){
+                else if(randomnumber<0.11){
                     shapesongrid[i][j]= GiftFactory.creatHealth();                    
                 }
-                else if(randomnumber<0.106){
+                else if(randomnumber<0.12){
                     shapesongrid[i][j] = BombFactory.creatBomb2();
                 }
-                else if(randomnumber<0.109){
+                else if(randomnumber<0.14){
                     shapesongrid[i][j] = ArmorFactory.creatArmor();
                 }
+
                 
             }
         }
