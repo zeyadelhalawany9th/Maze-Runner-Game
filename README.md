@@ -1,2 +1,2 @@
 # Maze-Runner-Game
-A maze runner game desktop application written in Java using the Model-View-Controller (MVC) architectural pattern.
+A Maze runne 2D desktop game application written in Java using the Model-View-Controller (MVC) architectural pattern and the Factory Design Pattern.
