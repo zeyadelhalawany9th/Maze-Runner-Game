@@ -278,6 +278,25 @@ public class Game extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Ammo;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     private javax.swing.JLabel Health;
     private javax.swing.JLabel Score;
     private javax.swing.JLabel Healthlabel;
